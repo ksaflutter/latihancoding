@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ProfilPage extends StatelessWidget {
-  const ProfilPage({super.key});
+class LatihanProfile extends StatelessWidget {
+  const LatihanProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profil Saya'),
+        title: const Text('Aplikasi untuk ANDA'),
         backgroundColor: const Color.fromARGB(255, 165, 190, 231),
       ),
       body: Padding(
@@ -16,7 +16,7 @@ class ProfilPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Kresno Suci Arinugroho',
+              'Selamat Datang di Apps kami',
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -38,10 +38,33 @@ class ProfilPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const Text(
-              'Seorang pejuang yang sedang belajar Flutter untuk membangun aplikasi mobile yang keren untuk membantu orang banyak.',
+              'Jangan lupa Sholat dan istigfar setiap hari',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Bersedekah selagi masih ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'mampu',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                            
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -50,3 +73,4 @@ class ProfilPage extends StatelessWidget {
     );
   }
 }
+
