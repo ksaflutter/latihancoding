@@ -48,4 +48,9 @@ void main() {
   print("buah-buahan: $fruits"); // buah-buahan: [apel, jeruk, mangga]
   List<dynamic> mixedList = [1, "dua", 3.0, true];
   print("list campuran: $mixedList"); // list campuran: [1, dua, 3.0, true]
+
+  // mau pilih data dari list pakai indeks
+  print("\n\nkalau mau pilih data dari list pakai indeks");
+  print("buah pertama: ${fruits[0]}"); // buah pertama: apel
+  print("buah terenak: ${fruits[2]}"); // buah kedua: mangga
 }
