@@ -41,4 +41,11 @@ void main() {
   print(
     weight.floor(),
   ); // -56 nilai pembulatan keatas karena pakai floor dan minus
+
+  // tugas 4 - menampilkan tipe data list string dan dynamic
+  print("\n\nmenampilkan tipe data list string dan dynamic");
+  List<String> fruits = ["apel", "jeruk", "mangga"]; // listnya ngak bisa campur
+  print("buah-buahan: $fruits"); // buah-buahan: [apel, jeruk, mangga]
+  List<dynamic> mixedList = [1, "dua", 3.0, true];
+  print("list campuran: $mixedList"); // list campuran: [1, dua, 3.0, true]
 }
