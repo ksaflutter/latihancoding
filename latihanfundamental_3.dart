@@ -53,4 +53,15 @@ void main() {
   print("\n\nkalau mau pilih data dari list pakai indeks");
   print("buah pertama: ${fruits[0]}"); // buah pertama: apel
   print("buah terenak: ${fruits[2]}"); // buah kedua: mangga
+
+  // tugas 5 - menampilkan tipe data Map
+  print("\n\nmenampilkan tipe data Map");
+  Map kendaraan = {
+    "mobil": "honda CRV",
+    "motor": "Honda Nmax",
+  }; /* enaknya pakai map
+  karena bisa pakai key dan value, jadi nga perlu urutan*/
+  print("kendaraan: $kendaraan");
+  print("kendaraan favorit: ${kendaraan["mobil"]}"); // kendaraan: honda CRV
+  // kendaraan: {mobil: honda CRV, motor: Honda Nmax}
 }
