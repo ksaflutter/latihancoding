@@ -41,4 +41,13 @@ void main() {
     "tulisan dengan karakter dan upper : ${tulisan.replaceAll(' ', '_').toUpperCase()}",
   );
   // Abu_Djalaluddin
+
+  // tugas 5 - menampilkan tipe data string - memotong string
+  print("\n\nTugas 5 - menampilkan String dengan memotong string");
+  String namaKecilSatu =
+      "hesty riana"; /*awalnya pakai namaKecil nga bisa karena
+  sudah dideklarasikan di atas*/
+  print("namaKecil : $namaKecilSatu");
+  print("nama dipotong : ${namaKecilSatu.substring(0, 5)} "); // hesty
+  // memotong string dari index 0 sampai
 }
