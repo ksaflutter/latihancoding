@@ -28,10 +28,17 @@ void main() {
 
   // tugas 3 - menampilkan tipe data number dengan parameter
   print("\n\nmenampilkan tipe number dengan parameter");
-  double weight = -55.5;
+  double weight = -55.8;
 
   print(
     "$nameHer beratnya: ${weight.abs()} kg" /* abs mengambil nilai absolut
     jadi nga peduli positif atau negatif, tetap akan menampilkan angka positif */,
-  ); // Sinta Hapsari memiliki berat: 55.5 kg
+  ); // Sinta Hapsari memiliki berat: 55.8 kg
+
+  print(
+    weight.ceil(),
+  ); // -55 nilai pembulatan kebawah karena pakai ceil dan minus
+  print(
+    weight.floor(),
+  ); // -56 nilai pembulatan keatas karena pakai floor dan minus
 }
