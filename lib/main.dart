@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b_3/hari7/tugasflutter_3.dart';
 import 'package:ppkd_b_3/hari7/tugasflutter_4.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: TugasFlutterempat(),
+      home: TugasFluttertiga(),
     );
   }
 }
