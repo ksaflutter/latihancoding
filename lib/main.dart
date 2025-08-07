@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_3/hari8/tugasflutter_5.dart';
-
-
+import 'package:ppkd_b_3/hari9/tugasflutter_6.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,10 +29,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
+        fontFamily: "Gilroy",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: TugasFlutterLima()
+      home: TugasFlutter8(),
     );
   }
 }
-
