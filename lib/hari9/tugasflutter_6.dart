@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b_3/hari11/tugasflutter_7.dart';
 
 class TugasFlutter8 extends StatefulWidget {
   const TugasFlutter8({super.key});
@@ -21,7 +22,13 @@ class _TugasFlutter8State extends State<TugasFlutter8> {
           content: const Text("Selamat datang kembali!"),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context); // Tutup dialog
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const TugasTujuh()),
+                );
+              },
               child: const Text("OK"),
             ),
           ],
@@ -65,7 +72,7 @@ class _TugasFlutter8State extends State<TugasFlutter8> {
                   // 👋 Welcome
                   const Text(
                     "Welcome Back",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
                   ),
                   const SizedBox(height: 8),
                   const Text(
