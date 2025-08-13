@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'belajar_benar/b_hal_home.dart';
+import 'h5_belajar_parsingdata/home_a.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BelajarHalHome(),
+      home: const ParsingDataSatu(),
     );
   }
 }
