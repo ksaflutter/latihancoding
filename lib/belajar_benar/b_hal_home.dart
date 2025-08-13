@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_3/belajar_benar/b_hal_satu.dart';
+import 'b_hal_satu.dart';
 
 class BelajarHalHome extends StatefulWidget {
   const BelajarHalHome({super.key});

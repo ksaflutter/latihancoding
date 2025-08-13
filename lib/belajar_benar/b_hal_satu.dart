@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_3/hari14/hal_list_9.dart';
+import '../hari14/hal_list_9.dart';
 
 class BelajarHalSatu extends StatefulWidget {
   final String nama;

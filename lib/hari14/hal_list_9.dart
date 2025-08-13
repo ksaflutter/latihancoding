@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_3/hari14/model/produk_model.dart';
+import 'model/produk_model.dart';
 
 class HalList9 extends StatefulWidget {
   final String ShowListType; // basic, map , model
