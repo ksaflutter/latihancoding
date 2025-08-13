@@ -73,36 +73,49 @@ class _ParsingDataSatuState extends State<ParsingDataSatu> {
               TextForm(
                 hintText: "Masukkan Nama Lengkap",
                 controller: nameController,
-                validator: (value) =>
-                    value == null || value.isEmpty ? "Nama wajib diisi" : null,
+                onChanged: (value) => setState(() {}),
               ),
               const SizedBox(height: 12),
               TextForm(
                 hintText: "Masukkan Email",
                 controller: emailController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Email wajib diisi";
-                  } else if (!value.contains("@")) {
-                    return "Email tidak valid";
-                  }
-                  return null;
-                },
+                onChanged: (value) => setState(() {}),
               ),
               const SizedBox(height: 12),
               TextForm(
                 hintText: "Masukkan Nomor HP (opsional)",
                 controller: phoneController,
-                validator: (value) => null, // Boleh kosong
+                onChanged: (value) => setState(() {}),
               ),
               const SizedBox(height: 12),
               TextForm(
                 hintText: "Masukkan Kota Domisili",
                 controller: domisiliController,
-                validator: (value) =>
-                    value == null || value.isEmpty ? "Kota wajib diisi" : null,
+                onChanged: (value) => setState(() {}),
               ),
               const SizedBox(height: 20),
+
+              // Tampilkan data real-time
+              Text(
+                nameController.text,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                emailController.text,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                phoneController.text,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                domisiliController.text,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
