@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_3/hari9/tugasflutter_6.dart';
+import 'package:ppkd_b_3/belajar_benar/b_hal_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Gilroy",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: TugasFlutter8(),
+      home: BelajarHalHome(),
     );
   }
 }
