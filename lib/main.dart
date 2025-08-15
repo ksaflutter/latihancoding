@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'h5_belajar_parsingdata/home_a.dart';
+import 'package:flutter_application_1/belajar_benar/b_hal_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,7 +7,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
+        fontFamily: "Gilroy",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ParsingDataSatu(),
+      home: BelajarHalHome(),
     );
   }
 }
