@@ -9,7 +9,7 @@ class TugasDua extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil Lengkap'),
-        backgroundColor: const Color.fromARGB(255, 21, 152, 156),
+        backgroundColor: const Color.fromARGB(255, 4, 81, 83),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -37,9 +37,9 @@ class TugasDua extends StatelessWidget {
                 ),
               ],
             ),
-              const SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
-            children: const [
+              children: const [
                 Icon(
                   Icons.phone_outlined,
                   color: Colors.redAccent,

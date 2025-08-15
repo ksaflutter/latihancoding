@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'model/produk_model.dart';
 
 class HalList9 extends StatefulWidget {
-  final String ShowListType; // basic, map , model
+  final String showListType; // basic, map, model
 
-  const HalList9({super.key, required this.ShowListType});
+  const HalList9({super.key, required this.showListType});
 
   @override
   State<HalList9> createState() => _HalList9State();
 }
 
 class _HalList9State extends State<HalList9> {
-  // tugas nomer 1
   final List<String> alatOlahraga = [
     'Treadmill',
     'Dumbbell',
@@ -24,6 +24,7 @@ class _HalList9State extends State<HalList9> {
     'Kettlebell',
     'Balance ball',
   ];
+
   final List<Map<String, dynamic>> daftarAlatOlahraga = [
     {
       'nama': 'Treadmill',
@@ -96,6 +97,7 @@ class _HalList9State extends State<HalList9> {
       'warna': Colors.green,
     },
   ];
+
   final List<ProdukModel> daftarProduk = [
     ProdukModel(
       nama: 'Treadmill',
@@ -165,9 +167,10 @@ class _HalList9State extends State<HalList9> {
       warna: Colors.green,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
-    switch (widget.ShowListType) {
+    switch (widget.showListType) {
       case 'basic':
         return ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),

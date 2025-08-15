@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app_event/event_screen.dart';
+
 import '../hari14/hal_list_9.dart';
 
 class BelajarHalSatu extends StatefulWidget {
@@ -91,6 +93,8 @@ class _BelajarHalSatuState extends State<BelajarHalSatu> {
     Text('Index 2: School', style: optionStyle),
   ];
 
+  get user => null;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -122,6 +126,8 @@ class _BelajarHalSatuState extends State<BelajarHalSatu> {
             _drawerItem("List Basic"),
             _drawerItem("List with Map"),
             _drawerItem("List with Model"),
+            Divider(),
+            _drawerItem("Event Screen"),
           ],
         ),
       ),
@@ -341,11 +347,16 @@ class _BelajarHalSatuState extends State<BelajarHalSatu> {
 
       // Tambahkan case lain sesuai kebutuhan
       case "List Basic":
-        return HalList9(ShowListType: 'basic');
+        return const HalList9(showListType: 'basic');
       case "List with Map":
-        return HalList9(ShowListType: 'map');
+        return const HalList9(showListType: 'map');
       case "List with Model":
-        return HalList9(ShowListType: 'model');
+        return const HalList9(showListType: 'model');
+      case "Daftar kegiatan peserta":
+      // tambahan case lain beda tugas
+      case "Event Screen":
+        return const EventScreen();
+
       default:
         return const Text("Pilih menu dari drawer");
     }
