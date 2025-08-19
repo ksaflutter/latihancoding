@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/belajar_benar/b_hal_home.dart';
+import 'package:flutter_application_1/tugas_13/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Gilroy",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BelajarHalHome(),
+      home: BookApp(),
     );
   }
 }
