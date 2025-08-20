@@ -164,9 +164,9 @@ class _EditBookScreenState extends State<EditBookScreen> {
               height: 150,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.blue.shade50,
+                color: Colors.amber.shade50,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue.shade200),
+                border: Border.all(color: Colors.amber.shade200),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -174,11 +174,11 @@ class _EditBookScreenState extends State<EditBookScreen> {
                   Icon(
                     Icons.book,
                     size: 48,
-                    color: Colors.blue.shade400,
+                    color: const Color.fromARGB(255, 48, 119, 177),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Cover Buku',
+                    'Buku favorit anda',
                     style: TextStyle(
                       color: Colors.blue.shade400,
                       fontWeight: FontWeight.w500,
@@ -407,6 +407,10 @@ class _EditBookScreenState extends State<EditBookScreen> {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  foregroundColor: Colors.white,
+                ),
                 onPressed: _isLoading ? null : _updateBook,
                 child: _isLoading
                     ? const CircularProgressIndicator(color: Colors.white)

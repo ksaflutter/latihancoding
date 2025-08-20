@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       try {
         await AuthPreferences.logout();
         if (mounted) {
-          // Navigate to login screen and remove all previous routes
+          // kembali ke halaman login menutup semua halaman yang sudah dibuka
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
@@ -235,7 +235,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 3, 42, 148),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -244,7 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           _email.isNotEmpty ? _email : 'user@example.com',
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Color.fromARGB(179, 247, 245, 245),
+                            color: Color.fromARGB(255, 3, 42, 148),
                           ),
                         ),
                       ],
@@ -373,17 +373,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 56,
                     child: ElevatedButton.icon(
                       onPressed: _logout,
-                      icon: const Icon(Icons.logout, color: Colors.white),
+                      icon: const Icon(Icons.logout,
+                          color: Color.fromARGB(255, 35, 12, 241)),
                       label: const Text(
                         'Logout',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 17, 17, 17),
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 23, 88, 163),
+                        backgroundColor: const Color.fromARGB(
+                            255, 228, 216, 47), // ganti color button
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),

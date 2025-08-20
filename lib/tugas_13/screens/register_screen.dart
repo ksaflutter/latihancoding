@@ -139,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: const Icon(
                         Icons.person_add,
                         size: 50,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 62, 106, 143),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -148,7 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 14, 13, 13),
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -156,10 +156,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       'Daftar untuk mulai mengelola buku Anda',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Color.fromARGB(179, 95, 92, 92),
+                        color: Color.fromARGB(179, 204, 203, 203),
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 30),
                     // Register Form
                     Container(
                       padding: const EdgeInsets.all(24),

@@ -10,7 +10,7 @@ class AuthPreferences {
   static Future<bool> loginUser(
       String username, String email, String password) async {
     final prefs = await SharedPreferences.getInstance();
-    // validasi lebih dulu
+    //Di validasi lebih dulu
     final savedEmail = prefs.getString(_keyEmail) ?? '';
     final savedPassword = prefs.getString(_keyUserPassword) ?? '';
     // Simple validation

@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 7, 7, 7),
+                        color: Color.fromARGB(255, 255, 254, 254),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -137,10 +137,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Masuk ke akun Anda',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Color.fromARGB(179, 59, 59, 59),
+                        color: Color.fromARGB(179, 216, 215, 215),
                       ),
                     ),
-                    const SizedBox(height: 130),
+                    const SizedBox(
+                        height: 20), // salah satu cara mengatur box log in
                     // Login Form
                     Container(
                       padding: const EdgeInsets.all(24),

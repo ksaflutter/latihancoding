@@ -32,9 +32,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         );
       } else {
         // Show welcome screen for a moment then navigate to login
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(
+            seconds:
+                4)); // ketika masuk kehalaman ada waktu jeda sekitar 4 detik
         if (mounted) {
           Navigator.pushReplacement(
+            // hanya untuk tampilan sementara
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
           );
@@ -69,7 +72,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withOpacity(0.5),
                       blurRadius: 20,
                       offset: const Offset(0, 10),
                     ),
@@ -78,7 +81,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: const Icon(
                   Icons.menu_book,
                   size: 80,
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 19, 95, 156),
                 ),
               ),
               const SizedBox(height: 30),
@@ -104,7 +107,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               const SizedBox(height: 30),
               const Text(
-                'Kelola koleksi buku Anda dengan mudah',
+                'Mengelola koleksi buku Anda dengan mudah',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white70,

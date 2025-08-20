@@ -17,7 +17,7 @@ class BookApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,
+          backgroundColor: Color.fromARGB(255, 27, 85, 133),
           foregroundColor: Colors.white,
           elevation: 4,
           centerTitle: true,

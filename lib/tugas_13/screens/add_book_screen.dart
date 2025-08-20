@@ -148,7 +148,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Cover Buku',
+                    'Tambah buku anda',
                     style: TextStyle(
                       color: const Color.fromARGB(255, 16, 130, 223),
                       fontWeight: FontWeight.w500,
@@ -222,7 +222,9 @@ class _AddBookScreenState extends State<AddBookScreen> {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 5, 99, 177),
+                  backgroundColor: const Color.fromARGB(
+                      255, 243, 218, 77), // ubah dekorasi button
+                  foregroundColor: const Color.fromARGB(255, 4, 91, 163),
                 ),
                 onPressed: _isLoading ? null : _saveBook,
                 child: _isLoading

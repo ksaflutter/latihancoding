@@ -130,7 +130,10 @@ class _BookListScreenState extends State<BookListScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blue.shade400, Colors.deepPurple.shade600],
+          colors: [
+            const Color.fromARGB(230, 66, 164, 245), // ganti box headline
+            Colors.amber.shade600
+          ],
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
@@ -175,14 +178,14 @@ class _BookListScreenState extends State<BookListScreen> {
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Color.fromARGB(255, 15, 15, 15),
           ),
         ),
         Text(
           title,
           style: const TextStyle(
             fontSize: 12,
-            color: Colors.white70,
+            color: Color.fromARGB(179, 20, 20, 20),
           ),
         ),
       ],
@@ -224,8 +227,8 @@ class _BookListScreenState extends State<BookListScreen> {
             _applyFilter();
           });
         },
-        selectedColor: Colors.blue.shade200,
-        checkmarkColor: Colors.blue,
+        selectedColor: Colors.amberAccent.shade200,
+        checkmarkColor: const Color.fromARGB(255, 226, 67, 19),
       ),
     );
   }
@@ -255,12 +258,12 @@ class _BookListScreenState extends State<BookListScreen> {
                 width: 60,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: Colors.blue.shade100,
+                  color: Colors.amberAccent.shade100,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   Icons.book,
-                  color: Colors.blue.shade400,
+                  color: const Color.fromARGB(255, 6, 87, 153),
                   size: 30,
                 ),
               ),
