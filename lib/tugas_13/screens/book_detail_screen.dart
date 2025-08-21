@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_application_1/tugas_13/db/db_helper.dart';
+import 'package:flutter/material.dart'; // paket utama Flutter untuk membuat UI.
+import 'package:flutter_application_1/tugas_13/db/db_helper.dart'; // class helper untuk koneksi & operasi database SQLite.
 
-import '../models/book.dart';
-import 'edit_book_screen.dart';
+import '../models/book.dart'; // model data buku (title, author, genre, dll).
+import 'edit_book_screen.dart'; // layar untuk mengedit detail buku.
 
 class BookDetailScreen extends StatefulWidget {
-  final Book book;
+  final Book book; // menerima data buku dari layar sebelumnya.
   const BookDetailScreen({
     super.key,
     required this.book,
@@ -15,22 +15,28 @@ class BookDetailScreen extends StatefulWidget {
 }
 
 class _BookDetailScreenState extends State<BookDetailScreen> {
-  late Book _book;
-  bool _isLoading = false;
+  late Book _book; //_book → objek buku yang sedang ditampilkan.
+  bool _isLoading =
+      false; //_isLoading → flag loading ketika update atau delete sedang berlangsung.
   @override
   void initState() {
+    // initState dijalankan pertama kali
     super.initState();
-    _book = widget.book;
+    _book =
+        widget.book; //isi _book dengan data yang dikirim dari BookDetailScreen.
   }
 
   Future<void> _updateProgress() async {
+    // AlertDialog untuk input halaman yang sedang dibaca.
     final currentPageController = TextEditingController(
-      text: _book.currentPage.toString(),
+      text: _book.currentPage.toString(), // Jika input valid → update status:
     );
     final newPage = await showDialog<int>(
-      context: context,
+      //Jika halaman terakhir → status jadi completed, tanggal selesai dicatat.
+      context: context, //Jika belum selesai → status jadi reading.
       builder: (context) => AlertDialog(
-        title: const Text('Update Progress'),
+        title: const Text(
+            'Update Progress'), // Update database via DatabaseHelper.updateBook.
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -58,7 +64,8 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
             onPressed: () {
               final page = int.tryParse(currentPageController.text);
               if (page != null && page >= 0 && page <= _book.totalPages) {
-                Navigator.pop(context, page);
+                Navigator.pop(context,
+                    page); // pakai pop untuk bisa kembali ke halaman sebelumnya
               }
             },
             child: const Text('Simpan'),
@@ -91,6 +98,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
+            // Tampilkan SnackBar sebagai notifikasi.
             content: Text('Progress berhasil diupdate'),
             backgroundColor: Colors.green,
           ),
@@ -98,6 +106,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
+            // Tampilkan SnackBar sebagai notifikasi.
             content: Text('Error updating progress: $e'),
             backgroundColor: Colors.red,
           ),
@@ -111,6 +120,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
   }
 
   Future<void> _deleteBook() async {
+    // Menampilkan dialog konfirmasi hapus.
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -124,7 +134,8 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Hapus'),
+            child: const Text(
+                'Hapus'), // Jika setuju → panggil DatabaseHelper.deleteBook.
           ),
         ],
       ),
@@ -134,7 +145,8 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
         _isLoading = true;
       });
       try {
-        await DatabaseHelper.instance.deleteBook(_book.id!);
+        await DatabaseHelper.instance.deleteBook(_book
+            .id!); // Jika berhasil → kembali ke halaman sebelumnya + snackbar sukses.
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Buku berhasil dihapus'),
@@ -157,6 +169,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
   }
 
   Widget _buildInfoCard(String title, String value, IconData icon) {
+    // Membuat card kecil untuk menampilkan informasi buku (genre, total halaman, tanggal ditambahkan, dll).
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -171,11 +184,13 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
         ],
       ),
       child: Row(
+        // Menggunakan Row dengan icon + teks.
         children: [
           Icon(icon, color: Colors.blue, size: 24),
           const SizedBox(width: 12),
           Expanded(
             child: SingleChildScrollView(
+              // Ada SingleChildScrollView untuk menghindari error layout overflow.
               // agar icon pixel dari informasi buku jadi terlihat yang sebelumnya hanya berupa column (error)
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,21 +227,22 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
         title: const Text('Detail Buku'),
         actions: [
           IconButton(
-            onPressed: _isLoading
-                ? null
-                : () async {
-                    final result = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EditBookScreen(book: _book),
-                      ),
-                    );
-                    if (result is Book) {
-                      setState(() {
-                        _book = result;
-                      });
-                    }
-                  },
+            onPressed:
+                _isLoading // Jika isLoading → tampilkan CircularProgressIndicator.
+                    ? null
+                    : () async {
+                        final result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditBookScreen(book: _book),
+                          ),
+                        );
+                        if (result is Book) {
+                          setState(() {
+                            _book = result;
+                          });
+                        }
+                      },
             icon: const Icon(Icons.edit),
           ),
           PopupMenuButton<String>(
@@ -465,14 +481,15 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                 ],
               ),
             ),
-      // Floating Action Button for quick actions
-      floatingActionButton: _book.status == 'reading'
-          ? FloatingActionButton.extended(
-              onPressed: _updateProgress,
-              icon: const Icon(Icons.bookmark_add),
-              label: const Text('Update Progress'),
-            )
-          : null,
+      // Floating Action Button untuk aksis yang lebih cepat
+      floatingActionButton:
+          _book.status == 'reading' // Muncul hanya jika buku sedang reading.
+              ? FloatingActionButton.extended(
+                  onPressed: _updateProgress,
+                  icon: const Icon(Icons.bookmark_add),
+                  label: const Text('Update Progress'),
+                )
+              : null,
     );
   }
 }

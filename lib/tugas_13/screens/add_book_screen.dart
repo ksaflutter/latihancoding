@@ -11,7 +11,8 @@ class AddBookScreen extends StatefulWidget {
 
 class _AddBookScreenState extends State<AddBookScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
+  final _titleController =
+      TextEditingController(); //untuk membaca isi text field seperti judul, penulis, deskripsi
   final _authorController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _totalPagesController = TextEditingController();
@@ -20,6 +21,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
   String _selectedStatus = 'to_read';
   bool _isLoading = false;
   final List<String> _genres = [
+    //buat daftar pilihan genre dan status baca. Ini nantinya muncul di dropdown
     'Fiksi',
     'Non-Fiksi',
     'Romance',
@@ -41,6 +43,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
   ];
   @override
   void dispose() {
+    // dispose semua controller agar tidak memboroskan memori setelah halaman ditutup
     _titleController.dispose();
     _authorController.dispose();
     _descriptionController.dispose();
@@ -50,7 +53,8 @@ class _AddBookScreenState extends State<AddBookScreen> {
   }
 
   Future<void> _saveBook() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate())
+      return; //validasi form dulu. Kalau valid, kita set isLoading = true
     setState(() {
       _isLoading = true;
     });
@@ -68,10 +72,12 @@ class _AddBookScreenState extends State<AddBookScreen> {
         dateAdded: DateTime.now(),
         dateCompleted: _selectedStatus == 'completed' ? DateTime.now() : null,
       );
-      await DatabaseHelper.instance.createBook(book);
+      await DatabaseHelper.instance.createBook(
+          book); // Data itu kita simpan ke database lewat DatabaseHelper.instance.createBook(book)
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
+            // berhasil, muncul snackbar hijau ‘Buku berhasil ditambahkan’ lalu halaman ditutup.
             content: Text('Buku berhasil ditambahkan'),
             backgroundColor: Colors.green,
           ),
@@ -82,7 +88,8 @@ class _AddBookScreenState extends State<AddBookScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error menambah buku: $e'),
+            content: Text(
+                'Error menambah buku: $e'), // gagal, muncul snackbar merah dengan pesan error.
             backgroundColor: Colors.red,
           ),
         );
@@ -90,7 +97,8 @@ class _AddBookScreenState extends State<AddBookScreen> {
     } finally {
       if (mounted) {
         setState(() {
-          _isLoading = false;
+          _isLoading =
+              false; // isLoading dikembalikan ke false biar tombol aktif lagi.
         });
       }
     }
@@ -123,6 +131,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
       body: Form(
         key: _formKey,
         child: ListView(
+          // Form berisi ListView, supaya kalau form panjang bisa discroll.
           padding: const EdgeInsets.all(16),
           children: [
             // Book Cover Preview
@@ -173,7 +182,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
               },
             ),
             const SizedBox(height: 16),
-            // Current Page Field (only show if reading)
+            // keadaan sekarang Page Field (only show if reading)
             if (_selectedStatus == 'reading') ...[
               TextFormField(
                 controller: _currentPageController,
@@ -199,7 +208,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
               ),
               const SizedBox(height: 16),
             ],
-            // Description Field
+            // deskripsi
             TextFormField(
               controller: _descriptionController,
               maxLines: 4,
@@ -221,6 +230,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
+                // dua tombol: Simpan untuk menambah buku ke database, Batal untuk keluar dari form tanpa menyimpan.
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(
                       255, 243, 218, 77), // ubah dekorasi button

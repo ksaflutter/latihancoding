@@ -25,16 +25,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         _isLoading = false;
       });
       if (isLoggedIn) {
-        // Navigate to book list if already logged in
+        // Navigate to book list kalau sudah login
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const BookListScreen()),
         );
       } else {
-        // Show welcome screen for a moment then navigate to login
+        // selalu dimunculkan halaman welcome dulu untuk pembukaan diawal kalau belum login
         await Future.delayed(const Duration(
             seconds:
-                4)); // ketika masuk kehalaman ada waktu jeda sekitar 4 detik
+                2)); // ketika masuk kehalaman ada waktu jeda sekitar 2 detik
         if (mounted) {
           Navigator.pushReplacement(
             // hanya untuk tampilan sementara
@@ -51,6 +51,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/images_book_1.jpg"),
+            fit: BoxFit.cover,
+          ),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

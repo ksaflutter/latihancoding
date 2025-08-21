@@ -68,7 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: const Text('Batal'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, true),
+            onPressed: () => Navigator.pop(
+                context, true), // untuk bisa kembali ke halaman sebelumnya
             style: TextButton.styleFrom(foregroundColor: Colors.red),
             child: const Text('Logout'),
           ),
@@ -176,6 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
+              // agar design logo icon bisa muncul dibanding pakai column
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -325,6 +327,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
+                          // pakai dialog agar muncul info seperti pop up
                           title: const Text('Informasi Aplikasi'),
                           content: const Text(
                             'Manajemen Buku Pribadi v1.0\n\n'

@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
         if (mounted) {
           Navigator.pushReplacement(
+            // supaya tidak balik ke halaman sebelumnya
             context,
             MaterialPageRoute(builder: (context) => const BookListScreen()),
           );
@@ -80,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        // buat design
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/images_book_2.jpg"),

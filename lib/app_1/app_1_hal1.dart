@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'app_1_hal2.dart';
 
 class HalamanSatu1 extends StatefulWidget {
   final String nama;
@@ -74,7 +72,7 @@ class _HalamanSatu1State extends State<HalamanSatu1> {
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Index 0: Home', style: optionStyle),
     Padding(
-      padding: const EdgeInsets.only(right: 20.0),
+      padding: EdgeInsets.only(right: 20.0),
       child: Align(
         alignment: Alignment.topRight,
         child: Text(

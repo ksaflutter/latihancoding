@@ -10,7 +10,8 @@ class EditBookScreen extends StatefulWidget {
     required this.book,
   });
   @override
-  State<EditBookScreen> createState() => _EditBookScreenState();
+  State<EditBookScreen> createState() =>
+      _EditBookScreenState(); // Membuat screen Edit Buku, menerima parameter book (dari halaman sebelumnya) untuk diisi ke form
 }
 
 class _EditBookScreenState extends State<EditBookScreen> {
@@ -50,6 +51,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
   }
 
   void _initializeControllers() {
+    // Saat pertama kali halaman terbuka, semua field otomatis terisi dengan data buku yang dipilih
     _titleController = TextEditingController(text: widget.book.title);
     _authorController = TextEditingController(text: widget.book.author);
     _descriptionController =
@@ -73,6 +75,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
   }
 
   Future<void> _updateBook() async {
+    // validasi form sebelum lanjut
     if (!_formKey.currentState!.validate()) return;
     setState(() {
       _isLoading = true;
@@ -83,14 +86,16 @@ class _EditBookScreenState extends State<EditBookScreen> {
       if (_selectedStatus == 'completed' && widget.book.status != 'completed') {
         completedDate = DateTime.now();
       } else if (_selectedStatus != 'completed') {
-        completedDate = null;
+        completedDate =
+            null; // Kalau status completed → isi currentPage sama dengan totalPages
       }
-      // Auto-update current page if status is completed
+      // Auto-update current page if kalau komplit
       int currentPage = int.parse(_currentPageController.text.isEmpty
           ? '0'
           : _currentPageController.text);
       if (_selectedStatus == 'completed') {
-        currentPage = int.parse(_totalPagesController.text);
+        currentPage = int.parse(_totalPagesController
+            .text); // Buat objek book baru dengan data terbaru (copyWith = clone + edit field tertentu)
       }
       final updatedBook = widget.book.copyWith(
         title: _titleController.text.trim(),
@@ -101,7 +106,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
         currentPage: currentPage,
         status: _selectedStatus,
         dateCompleted: completedDate,
-      );
+      ); // Simpan perubahan ke database
       await DatabaseHelper.instance.updateBook(updatedBook);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -113,6 +118,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
         Navigator.pop(context, updatedBook);
       }
     } catch (e) {
+      // Tampilkan error jika gagal
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -122,6 +128,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
         );
       }
     } finally {
+      // Reset loading state
       if (mounted) {
         setState(() {
           _isLoading = false;
@@ -220,6 +227,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
             const SizedBox(height: 16),
             // Genre Dropdown
             DropdownButtonFormField<String>(
+              // Dropdown untuk memilih status baca buku (Belum Dibaca, Sedang Dibaca, Selesai)
               value: _selectedGenre,
               decoration: const InputDecoration(
                 labelText: 'Genre',
@@ -282,8 +290,9 @@ class _EditBookScreenState extends State<EditBookScreen> {
               },
             ),
             const SizedBox(height: 16),
-            // Current Page Field (show for reading and completed)
-            if (_selectedStatus == 'reading' ||
+            // keadaan sekarang (show for reading and completed)
+            if (_selectedStatus ==
+                    'reading' || //   Input halaman yang sudah dibaca. Kalau status "Selesai", otomatis terisi penuh.
                 _selectedStatus == 'completed') ...[
               TextFormField(
                 controller: _currentPageController,
@@ -316,7 +325,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                   return null;
                 },
                 onChanged: (value) {
-                  // Auto-update to completed if current page equals total pages
+                  // Auto-update to completed if keadaan sekarang = total page
                   if (_selectedStatus == 'reading') {
                     final currentPage = int.tryParse(value);
                     final totalPages = int.tryParse(_totalPagesController.text);
@@ -332,8 +341,9 @@ class _EditBookScreenState extends State<EditBookScreen> {
               ),
               const SizedBox(height: 16),
             ],
-            // Progress indicator for reading status
+            // Progress indikator untuk status sedang reading
             if (_selectedStatus == 'reading') ...[
+              // Menampilkan progress bar berdasarkan halaman yang sudah dibaca.
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -426,7 +436,10 @@ class _EditBookScreenState extends State<EditBookScreen> {
               width: double.infinity,
               height: 50,
               child: OutlinedButton(
-                onPressed: _isLoading ? null : () => Navigator.pop(context),
+                onPressed: _isLoading
+                    ? null
+                    : () => Navigator.pop(
+                        context), // Tombol untuk menyimpan perubahan. Disable kalau sedang loading
                 child: const Text(
                   'Batal',
                   style: TextStyle(fontSize: 16),
