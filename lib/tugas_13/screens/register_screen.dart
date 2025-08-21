@@ -301,7 +301,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               const Text('Sudah punya akun? '),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigator.pop(
+                                      context); // pindah kehalaman dan bisa balik kehalaman sebelumnnya
                                 },
                                 child: const Text(
                                   'Masuk',

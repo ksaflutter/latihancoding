@@ -233,6 +233,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               TextButton(
                                 onPressed: () {
                                   Navigator.push(
+                                    // pakai push biar halaman lama tetap ada dibawah
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>

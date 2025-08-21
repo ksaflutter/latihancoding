@@ -27,6 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       if (isLoggedIn) {
         // Navigate to book list kalau sudah login
         Navigator.pushReplacement(
+          // nav untuk pindah halaman dan nga bisa balik ke halaman sebelomnya
           context,
           MaterialPageRoute(builder: (context) => const BookListScreen()),
         );
