@@ -5,6 +5,15 @@ class AppLoginSatu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('App Login Satu'),
+        ),
+        body: const Center(
+          child: Text('Welcome to App Login Satu'),
+        ),
+      ),
+    );
   }
 }
