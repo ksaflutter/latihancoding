@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OriginWelcomeScreen1 extends StatelessWidget {
-  const OriginWelcomeScreen1({super.key});
+class OriginAppLog1 extends StatelessWidget {
+  const OriginAppLog1({super.key});
 
   @override
   Widget build(BuildContext context) {
