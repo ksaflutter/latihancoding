@@ -8,8 +8,9 @@ class DatabaseHelper {
   static Database? _database;
   DatabaseHelper._init(); // constructor privat (hanya bisa dipanggil dari dalam class)
   Future<Database> get database async {
-    if (_database != null)
+    if (_database != null) {
       return _database!; // _database ....tempat menyimpan objek database yang sedang aktif.
+    }
     _database = await _initDB(
         'books.db'); // Jika _database sudah ada → langsung dipakai.
     return _database!; // belum → panggil _initDB untuk membuat database baru (books.db).

@@ -53,8 +53,9 @@ class _AddBookScreenState extends State<AddBookScreen> {
   }
 
   Future<void> _saveBook() async {
-    if (!_formKey.currentState!.validate())
+    if (!_formKey.currentState!.validate()) {
       return; //validasi form dulu. Kalau valid, kita set isLoading = true
+    }
     setState(() {
       _isLoading = true;
     });
