@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/tugas_15/splash_screen.dart';
+import 'package:flutter_application_1/vespario_tugas16/vespario_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Gilroy",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SplashScreen(),
+      home: VesparioApp(),
     );
   }
 }

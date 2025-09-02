@@ -124,11 +124,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 112, 111, 111),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withOpacity(0.5),
                         blurRadius: 10,
                         offset: const Offset(0, 5),
                       ),
@@ -154,14 +154,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text(
                               "Selamat Datang,",
                               style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
+                                  TextStyle(fontSize: 14, color: Colors.white),
                             ),
                             Text(
                               userName,
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                                color: Colors.white,
                               ),
                             ),
                             Text(
@@ -255,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: const Color.fromARGB(255, 231, 107, 165),
         onTap: _onBottomNavItem,
       ),
     );
@@ -272,11 +272,11 @@ class _HomeScreenState extends State<HomeScreen> {
       borderRadius: BorderRadius.circular(16),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color.fromARGB(255, 240, 217, 217),
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withOpacity(0.5),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
