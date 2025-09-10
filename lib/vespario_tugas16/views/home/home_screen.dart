@@ -20,11 +20,13 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
   int _selectedIndex = 0;
   String userName = "";
 
+  // UPDATED: ServiceReportScreenFinal dengan showAppBar: false untuk bottom nav
   final List<Widget> _pages = [
     const HomeContentFinal(),
     const ServiceListScreenFinal(),
     const ServiceHistoryScreenFinal(),
-    const ServiceReportScreenFinal(),
+    const ServiceReportScreenFinal(
+        showAppBar: false), // NO APPBAR untuk bottom nav
   ];
 
   final List<String> _titles = [
@@ -50,10 +52,14 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_titles[_selectedIndex]),
-        centerTitle: true,
-      ),
+      // KONDISIONAL APPBAR - Hanya tampil jika bukan di laporan tab
+      appBar: _selectedIndex != 3
+          ? AppBar(
+              title: Text(_titles[_selectedIndex]),
+              centerTitle: true,
+            )
+          : null, // Tidak ada AppBar di laporan tab
+
       drawer: const DrawerVesparioFinal(),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -125,10 +131,7 @@ class _HomeContentFinalState extends State<HomeContentFinal> {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 9, 140, 145),
-                  AppColorsFinal.darkMint
-                ],
+                colors: [AppColorsFinal.mintGreen, AppColorsFinal.darkMint],
               ),
               borderRadius: BorderRadius.circular(16),
             ),
@@ -182,8 +185,7 @@ class _HomeContentFinalState extends State<HomeContentFinal> {
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColorsFinal.white,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

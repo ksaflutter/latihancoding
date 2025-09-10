@@ -57,6 +57,16 @@ class BookingDataFinal {
         createdAt: json["created_at"],
       );
 
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "booking_date": bookingDate,
+        "vehicle_type": vehicleType,
+        "description": description,
+        "user_id": userId,
+        "updated_at": updatedAt,
+        "created_at": createdAt,
+      };
+
   // Helper method to safely parse int from dynamic
   static int? _parseToInt(dynamic value) {
     if (value == null) return null;
@@ -66,15 +76,35 @@ class BookingDataFinal {
     }
     return null;
   }
+}
+
+// Booking List Response Model
+BookingListResponseFinal bookingListResponseFinalFromJson(String str) =>
+    BookingListResponseFinal.fromJson(json.decode(str));
+
+String bookingListResponseFinalToJson(BookingListResponseFinal data) =>
+    json.encode(data.toJson());
+
+class BookingListResponseFinal {
+  String? message;
+  List<BookingDataFinal>? data;
+
+  BookingListResponseFinal({this.message, this.data});
+
+  factory BookingListResponseFinal.fromJson(Map<String, dynamic> json) =>
+      BookingListResponseFinal(
+        message: json["message"],
+        data: json["data"] == null
+            ? []
+            : List<BookingDataFinal>.from(
+                json["data"].map((x) => BookingDataFinal.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "booking_date": bookingDate,
-        "vehicle_type": vehicleType,
-        "description": description,
-        "user_id": userId,
-        "updated_at": updatedAt,
-        "created_at": createdAt,
+        "message": message,
+        "data": data == null
+            ? []
+            : List<dynamic>.from(data!.map((x) => x.toJson())),
       };
 }
 
@@ -136,6 +166,7 @@ class ServiceListResponseFinal {
 class ServiceDataFinal {
   int? id;
   int? userId;
+  int? bookingId; // FIELD BARU untuk tracking booking
   String? vehicleType;
   String? complaint;
   String? status;
@@ -145,6 +176,7 @@ class ServiceDataFinal {
   ServiceDataFinal({
     this.id,
     this.userId,
+    this.bookingId,
     this.vehicleType,
     this.complaint,
     this.status,
@@ -156,6 +188,7 @@ class ServiceDataFinal {
       ServiceDataFinal(
         id: _parseToInt(json["id"]),
         userId: _parseToInt(json["user_id"]),
+        bookingId: _parseToInt(json["booking_id"]), // PARSING AMAN
         vehicleType: json["vehicle_type"],
         complaint: json["complaint"],
         status: json["status"],
@@ -163,19 +196,10 @@ class ServiceDataFinal {
         updatedAt: json["updated_at"],
       );
 
-  // Helper method to safely parse int from dynamic
-  static int? _parseToInt(dynamic value) {
-    if (value == null) return null;
-    if (value is int) return value;
-    if (value is String) {
-      return int.tryParse(value);
-    }
-    return null;
-  }
-
   Map<String, dynamic> toJson() => {
         "id": id,
         "user_id": userId,
+        "booking_id": bookingId,
         "vehicle_type": vehicleType,
         "complaint": complaint,
         "status": status,
@@ -186,6 +210,7 @@ class ServiceDataFinal {
   Map<String, Object?> toMap() => {
         "id": id,
         "user_id": userId,
+        "booking_id": bookingId,
         "vehicle_type": vehicleType,
         "complaint": complaint,
         "status": status,
@@ -195,14 +220,25 @@ class ServiceDataFinal {
 
   factory ServiceDataFinal.fromMap(Map<String, dynamic> map) =>
       ServiceDataFinal(
-        id: map["id"],
-        userId: map["user_id"],
+        id: _parseToInt(map["id"]),
+        userId: _parseToInt(map["user_id"]),
+        bookingId: _parseToInt(map["booking_id"]),
         vehicleType: map["vehicle_type"],
         complaint: map["complaint"],
         status: map["status"],
         createdAt: map["created_at"],
         updatedAt: map["updated_at"],
       );
+
+  // HELPER METHOD UNTUK PARSING AMAN - INI YANG PENTING!
+  static int? _parseToInt(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is String) {
+      return int.tryParse(value);
+    }
+    return null;
+  }
 }
 
 // Service Status Response Model

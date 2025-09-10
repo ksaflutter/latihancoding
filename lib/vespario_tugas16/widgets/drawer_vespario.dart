@@ -5,6 +5,7 @@ import 'package:flutter_application_1/vespario_tugas16/theme/app_colors.dart';
 import 'package:flutter_application_1/vespario_tugas16/views/auth/login_screen.dart';
 import 'package:flutter_application_1/vespario_tugas16/views/profile/profile_screen.dart';
 import 'package:flutter_application_1/vespario_tugas16/views/service/booking_form_screen.dart';
+import 'package:flutter_application_1/vespario_tugas16/views/service/booking_list_screen.dart';
 import 'package:flutter_application_1/vespario_tugas16/views/service/service_history_screen.dart';
 import 'package:flutter_application_1/vespario_tugas16/views/service/service_list_screen.dart';
 import 'package:flutter_application_1/vespario_tugas16/views/service/service_report_screen.dart';
@@ -131,7 +132,7 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                           style: TextStyle(
                             color: AppColorsFinal.white,
                             fontSize: 12,
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -174,7 +175,7 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                               style: const TextStyle(
                                 color: AppColorsFinal.white,
                                 fontSize: 14,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w700,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -183,7 +184,7 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                               style: const TextStyle(
                                 color: AppColorsFinal.white,
                                 fontSize: 11,
-                                fontWeight: FontWeight.w300,
+                                fontWeight: FontWeight.w600,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -223,6 +224,16 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                   },
                 ),
 
+                // Daftar Booking
+                _buildDrawerItem(
+                  icon: Icons.list_alt_outlined,
+                  title: "Daftar Booking",
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    context.push(const BookingListScreenFinal());
+                  },
+                ),
+
                 // Kelola Service
                 _buildDrawerItem(
                   icon: Icons.build_outlined,
@@ -243,13 +254,14 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                   },
                 ),
 
-                // Laporan
+                // Laporan - DENGAN APPBAR karena dari drawer
                 _buildDrawerItem(
                   icon: Icons.analytics_outlined,
                   title: "Laporan",
                   onTap: () {
                     Navigator.of(context).pop();
-                    context.push(const ServiceReportScreenFinal());
+                    context.push(const ServiceReportScreenFinal(
+                        showAppBar: true)); // WITH APPBAR
                   },
                 ),
 
@@ -311,7 +323,7 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
             child: const Column(
               children: [
                 Text(
-                  "Vespario v1.0.0",
+                  "Vespario v1.ng",
                   style: TextStyle(
                     fontSize: 12,
                     color: AppColorsFinal.mediumGray,
@@ -320,7 +332,7 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  "© 2024 Vespario. All rights reserved.",
+                  "© 2025 Vespario. All rights reserved.",
                   style: TextStyle(
                     fontSize: 10,
                     color: AppColorsFinal.mediumGray,
@@ -453,7 +465,7 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                 ),
                 Text("   • Pilih menu 'Booking Service'"),
                 Text("   • Isi formulir booking"),
-                Text("   • Tunggu konfirmasi"),
+                Text("   • konversi ke service jika perlu"),
                 SizedBox(height: 8),
                 Text(
                   "2. Kelola Service",
@@ -482,8 +494,8 @@ class _DrawerVesparioFinalState extends State<DrawerVesparioFinal> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text("Email: support@vespario.com"),
-                Text("Telepon: +62 812-3456-7890"),
-                Text("WhatsApp: +62 812-3456-7890"),
+                Text("Telepon: +62 811-994-0198"),
+                Text("WhatsApp: +62 811-994-0198"),
               ],
             ),
           ),

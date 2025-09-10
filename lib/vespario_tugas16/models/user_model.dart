@@ -88,7 +88,7 @@ class LoginDataFinal {
       };
 }
 
-// User Model
+// User Model dengan Safe Parsing
 class UserFinal {
   int? id;
   String? name;
@@ -107,7 +107,7 @@ class UserFinal {
   });
 
   factory UserFinal.fromJson(Map<String, dynamic> json) => UserFinal(
-        id: _parseToInt(json["id"]),
+        id: _parseToInt(json["id"]), // PARSING AMAN
         name: json["name"],
         email: json["email"],
         emailVerifiedAt: json["email_verified_at"],
@@ -134,7 +134,7 @@ class UserFinal {
       };
 
   factory UserFinal.fromMap(Map<String, dynamic> map) => UserFinal(
-        id: _parseToInt(map["id"]),
+        id: _parseToInt(map["id"]), // PARSING AMAN
         name: map["name"],
         email: map["email"],
         emailVerifiedAt: map["email_verified_at"],
@@ -142,7 +142,7 @@ class UserFinal {
         updatedAt: map["updated_at"],
       );
 
-  // Helper method to safely parse int from dynamic
+  // HELPER METHOD UNTUK PARSING AMAN - MENGATASI STRING->INT ERROR
   static int? _parseToInt(dynamic value) {
     if (value == null) return null;
     if (value is int) return value;

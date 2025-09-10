@@ -252,7 +252,7 @@ class _ProfileScreenFinalState extends State<ProfileScreenFinal> {
                   // App Version
                   const Center(
                     child: Text(
-                      "Vespario v1.0.0\nBook. Fix. Ride.",
+                      "Vespario v1.ng\nBook. Fix. Ride.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12,
@@ -320,7 +320,7 @@ class _ProfileScreenFinalState extends State<ProfileScreenFinal> {
         return AlertDialog(
           title: const Text("Edit Profil"),
           content: const Text(
-            "Fitur edit profil akan segera tersedia.\nSaat ini profil dikelola melalui server.",
+            "Fitur edit profil akan segera tersedia.",
           ),
           actions: [
             TextButton(
@@ -402,14 +402,14 @@ class _ProfileScreenFinalState extends State<ProfileScreenFinal> {
               SizedBox(height: 8),
               Text("• Bagaimana cara booking service?"),
               Text("• Berapa lama waktu service?"),
-              Text("• Apa saja jenis service yang tersedia?"),
+              Text("• service tersedia untuk motor diluar vespa?"),
               SizedBox(height: 16),
               Text(
                 "Untuk bantuan lebih lanjut:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text("Email: support@vespario.com"),
-              Text("Telepon: +62 812-3456-7890"),
+              Text("Telepon: +62 811-994-0198"),
             ],
           ),
           actions: [
@@ -448,7 +448,7 @@ class _ProfileScreenFinalState extends State<ProfileScreenFinal> {
                 ],
               ),
               SizedBox(height: 8),
-              Text("Versi: 1.0.0"),
+              Text("Versi: 1.ng"),
               SizedBox(height: 8),
               Text("Book. Fix. Ride."),
               SizedBox(height: 16),

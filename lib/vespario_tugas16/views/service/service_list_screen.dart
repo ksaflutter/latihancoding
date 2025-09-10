@@ -193,6 +193,15 @@ class _ServiceListScreenFinalState extends State<ServiceListScreenFinal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Kelola Service"),
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.arrow_back, color: AppColorsFinal.white),
+        ),
+        backgroundColor: AppColorsFinal.mintGreen,
+        elevation: 0,
+      ),
       body: Column(
         children: [
           // Header
@@ -315,6 +324,7 @@ class _ServiceListScreenFinalState extends State<ServiceListScreenFinal> {
 
   Widget _buildServiceCard(ServiceDataFinal service) {
     Color statusColor = _getStatusColor(service.status ?? "");
+    bool isFromBooking = service.bookingId != null;
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -325,17 +335,54 @@ class _ServiceListScreenFinalState extends State<ServiceListScreenFinal> {
           children: [
             Row(
               children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: statusColor.withOpacity(0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    isFromBooking ? Icons.event_available : Icons.build,
+                    color: statusColor,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        service.vehicleType ?? "-",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColorsFinal.darkGray,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              service.vehicleType ?? "-",
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: AppColorsFinal.darkGray,
+                              ),
+                            ),
+                          ),
+                          if (isFromBooking)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: AppColorsFinal.orange.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                "From Booking #${service.bookingId}",
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColorsFinal.orange,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                       const SizedBox(height: 4),
                       Text(
@@ -368,10 +415,22 @@ class _ServiceListScreenFinalState extends State<ServiceListScreenFinal> {
               ],
             ),
             const SizedBox(height: 12),
+
+            // Service Details
             Row(
               children: [
+                Icon(Icons.tag, size: 14, color: AppColorsFinal.mediumGray),
+                const SizedBox(width: 4),
+                Text(
+                  "ID: ${service.id ?? 0}",
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColorsFinal.mediumGray,
+                  ),
+                ),
+                const SizedBox(width: 16),
                 Icon(Icons.access_time,
-                    size: 16, color: AppColorsFinal.mediumGray),
+                    size: 14, color: AppColorsFinal.mediumGray),
                 const SizedBox(width: 4),
                 Text(
                   _formatDate(service.createdAt),
@@ -380,10 +439,17 @@ class _ServiceListScreenFinalState extends State<ServiceListScreenFinal> {
                     color: AppColorsFinal.mediumGray,
                   ),
                 ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () => updateServiceStatus(service),
-                  child: const Text("Update Status"),
+              ],
+            ),
+
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: () => updateServiceStatus(service),
+                    child: const Text("Update Status"),
+                  ),
                 ),
                 TextButton(
                   onPressed: () => deleteService(service),
@@ -403,7 +469,7 @@ class _ServiceListScreenFinalState extends State<ServiceListScreenFinal> {
     switch (status.toLowerCase()) {
       case 'menunggu':
         return AppColorsFinal.warningYellow;
-      case 'dikerjakan':
+      case 'diproses':
         return AppColorsFinal.infoBlue;
       case 'selesai':
         return AppColorsFinal.successGreen;

@@ -213,85 +213,83 @@ class _ServiceHistoryScreenFinalState extends State<ServiceHistoryScreenFinal> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: AppColorsFinal.successGreen.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: AppColorsFinal.successGreen.withOpacity(0.3)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "${index + 1}",
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColorsFinal.successGreen,
-                      ),
+            Row(children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: AppColorsFinal.successGreen.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: AppColorsFinal.successGreen.withOpacity(0.3)),
+                ),
+                child: Center(
+                  child: Text(
+                    "${index + 1}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColorsFinal.successGreen,
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        service.vehicleType ?? "-",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColorsFinal.darkGray,
-                        ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      service.vehicleType ?? "-",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppColorsFinal.darkGray,
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        service.complaint ?? "-",
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: AppColorsFinal.mediumGray,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      service.complaint ?? "-",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: AppColorsFinal.mediumGray,
                       ),
-                    ],
-                  ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: AppColorsFinal.successGreen.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                        color: AppColorsFinal.successGreen.withOpacity(0.3)),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.check_circle,
-                        size: 16,
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: AppColorsFinal.successGreen.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                      color: AppColorsFinal.successGreen.withOpacity(0.3)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.check_circle,
+                      size: 16,
+                      color: AppColorsFinal.successGreen,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      service.status ?? "Selesai",
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
                         color: AppColorsFinal.successGreen,
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        service.status ?? "Selesai",
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: AppColorsFinal.successGreen,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ]),
             const SizedBox(height: 12),
 
             // Divider
@@ -351,7 +349,7 @@ class _ServiceHistoryScreenFinalState extends State<ServiceHistoryScreenFinal> {
         Icon(
           icon,
           size: 16,
-          color: AppColorsFinal.mediumGray,
+          color: const Color.fromARGB(255, 111, 161, 165),
         ),
         const SizedBox(width: 4),
         Column(
@@ -361,7 +359,7 @@ class _ServiceHistoryScreenFinalState extends State<ServiceHistoryScreenFinal> {
               label,
               style: const TextStyle(
                 fontSize: 10,
-                color: AppColorsFinal.mediumGray,
+                color: Color.fromARGB(255, 7, 67, 128),
               ),
             ),
             Text(

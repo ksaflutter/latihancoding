@@ -39,6 +39,10 @@ class _SplashScreenFinalState extends State<SplashScreenFinal> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/images_vespa_10.jpg"),
+            fit: BoxFit.cover,
+          ),
           gradient: AppColorsFinal.primaryGradient,
         ),
         child: const Center(
@@ -72,7 +76,7 @@ class _SplashScreenFinalState extends State<SplashScreenFinal> {
                 style: TextStyle(
                   fontSize: 18,
                   color: AppColorsFinal.white,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 1.2,
                 ),
               ),

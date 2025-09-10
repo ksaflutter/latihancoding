@@ -4,7 +4,12 @@ import 'package:flutter_application_1/vespario_tugas16/services/api/service_api.
 import 'package:flutter_application_1/vespario_tugas16/theme/app_colors.dart';
 
 class ServiceReportScreenFinal extends StatefulWidget {
-  const ServiceReportScreenFinal({super.key});
+  final bool showAppBar; // Parameter untuk kontrol AppBar
+
+  const ServiceReportScreenFinal({
+    super.key,
+    this.showAppBar = true, // Default true untuk backward compatibility
+  });
 
   @override
   State<ServiceReportScreenFinal> createState() =>
@@ -77,7 +82,7 @@ class _ServiceReportScreenFinalState extends State<ServiceReportScreenFinal> {
         .where((s) => s.status?.toLowerCase() == 'menunggu')
         .length;
     inProgressServices = combinedServices
-        .where((s) => s.status?.toLowerCase() == 'dikerjakan')
+        .where((s) => s.status?.toLowerCase() == 'diproses')
         .length;
 
     // Vehicle type statistics
@@ -106,26 +111,46 @@ class _ServiceReportScreenFinalState extends State<ServiceReportScreenFinal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // KONDISIONAL APPBAR - INI YANG PENTING!
+      appBar: widget.showAppBar
+          ? AppBar(
+              title: const Text("Laporan Service"),
+              leading: IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: const Icon(Icons.arrow_back, color: AppColorsFinal.white),
+              ),
+              backgroundColor: AppColorsFinal.dangerRed,
+              elevation: 0,
+            )
+          : null, // Tidak ada AppBar jika dari bottom nav
+
       body: Column(
         children: [
-          // Header
+          // Header - Always Show
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.only(
+              top: widget.showAppBar
+                  ? 20
+                  : MediaQuery.of(context).padding.top + 20,
+              bottom: 20,
+              left: 20,
+              right: 20,
+            ),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColorsFinal.dangerRed, Color(0xFFC0392B)],
               ),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.analytics,
+                    const Icon(Icons.analytics,
                         color: AppColorsFinal.white, size: 24),
-                    SizedBox(width: 8),
-                    Text(
+                    const SizedBox(width: 8),
+                    const Text(
                       "Laporan Service",
                       style: TextStyle(
                         color: AppColorsFinal.white,
@@ -133,10 +158,30 @@ class _ServiceReportScreenFinalState extends State<ServiceReportScreenFinal> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    // Show info badge jika dari bottom nav
+                    if (!widget.showAppBar) ...[
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: AppColorsFinal.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Text(
+                          "Analytics",
+                          style: TextStyle(
+                            color: AppColorsFinal.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
-                SizedBox(height: 8),
-                Text(
+                const SizedBox(height: 8),
+                const Text(
                   "Analisa data dan statistik service Vespa",
                   style: TextStyle(
                     color: AppColorsFinal.white,
@@ -197,17 +242,14 @@ class _ServiceReportScreenFinalState extends State<ServiceReportScreenFinal> {
         children: [
           // Summary Statistics Cards
           _buildSummaryCards(),
-
           const SizedBox(height: 24),
 
           // Status Distribution
           _buildStatusDistribution(),
-
           const SizedBox(height: 24),
 
           // Vehicle Type Statistics
           _buildVehicleTypeStats(),
-
           const SizedBox(height: 24),
 
           // Monthly Trend
@@ -251,7 +293,7 @@ class _ServiceReportScreenFinalState extends State<ServiceReportScreenFinal> {
               AppColorsFinal.successGreen,
             ),
             _buildSummaryCard(
-              "Dikerjakan",
+              "Diproses",
               inProgressServices.toString(),
               Icons.pending,
               AppColorsFinal.warningYellow,
@@ -327,7 +369,7 @@ class _ServiceReportScreenFinalState extends State<ServiceReportScreenFinal> {
             _buildStatusBar("Selesai", completedPercentage,
                 AppColorsFinal.successGreen, completedServices),
             const SizedBox(height: 8),
-            _buildStatusBar("Dikerjakan", inProgressPercentage,
+            _buildStatusBar("Diproses", inProgressPercentage,
                 AppColorsFinal.warningYellow, inProgressServices),
             const SizedBox(height: 8),
             _buildStatusBar("Menunggu", pendingPercentage,
